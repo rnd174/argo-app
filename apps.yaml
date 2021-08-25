@@ -1,20 +1,20 @@
 apiVersion : argoproj.io/v1alpha1
-kind : application
-metadta:
+kind : Application
+metadata:
   name : global-app
   namespace : argo
-  finalizeers:
+  finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-project: default
-source:
-  path : helm
-  repoURL: https://github.com/rnd174/argo-app.git
-  targetRevision: HEAD
-destination:
-  namespace: argo
-  server: https://kubernetes.default.svc
-syncPolicy:
-  automated:
-    selfHeal: true
-    prune : true
+  project: default
+  source:
+    path : helm
+    repoURL: https://github.com/rnd174/argo-app.git
+    targetRevision: HEAD
+  destination:
+    namespace: argo
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune : true

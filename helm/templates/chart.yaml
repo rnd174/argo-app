@@ -1,6 +1,6 @@
 apiVersion: argoproj.io/v1alpha1
-kind: application
-metadta:
+kind: Application
+metadata:
   name: guestbook-ui
   namespace: argo
   finalizers:
@@ -18,10 +18,10 @@ spec:
         ingress:
             host: guestbook-ui.$INGRESS_HOST.xip.io
       version: v3
-    destination:
-      namespace: argo
-      server: 'https://kubernetes.default.svc'
-    syncPolicy:
-      automated:
-        selfHeal: true
-        prune: true
+  destination:
+    namespace: argo
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
