@@ -1,7 +1,7 @@
 apiVersion : argoproj.io/v1alpha1
 kind : application
 metadta:
-  name : 
+  name : global-app
   namespace : argo
   finalizeers:
     - resources-finalizer.argocd.argoproj.io
