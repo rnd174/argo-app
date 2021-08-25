@@ -1,0 +1,27 @@
+apiVersion : argoproj.io/v1alpha1
+kind: application
+metadta:
+    name: guestbook-ui
+    namespace : argo
+    finalizers:
+        - resources-finalizer.argocd.argoproj.io
+spec:
+    project : default
+    source:
+        path: guestbook
+        repoURL: https://github.com/rnd174/argo-app1.git
+        targetRevision: HEAD
+        helm:
+            values: |
+                image:
+                    tag: latest
+                ingress:
+                    host: guestbook-ui.$INGRESS_HOST.xip.io
+            version: v3
+        destination:
+            namespace: argo
+            server: https://kubernetes.default.svc
+        syncPolicy:
+            automated:
+                selfHeal : true
+                prune: true
